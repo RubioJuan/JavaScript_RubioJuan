@@ -8,7 +8,7 @@
     - Acudiente.
     - Teléfonos de contacto(# de celular y #fijo).
     - Estado (En proceso de ingreso, Inscrito, Aprobado,Cursando, Graduado, Expulsado, Retirado).
-    - Riesgo.
+    - Riesgo (Bajo, medio y alto).
 
     Rutas:
 
