@@ -53,3 +53,10 @@ input[type="submit"]:hover {
 #resultados div {
 	margin-bottom: 10px; /* Espacio entre elementos */
 }
+.dialogo input{
+    margin-right: 10px;
+}
+.dialogo button{
+    margin-top: 10px;
+    margin-right: 10px;
+}

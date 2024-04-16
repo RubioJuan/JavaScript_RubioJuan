@@ -56,9 +56,9 @@ class GestorActivos extends HTMLElement {
                     <h3>Rutas</h3>
                     <select id="Rutas">
                         <option value="empty">seleccionar...</option>
-                        <option value="RutaNodeJS">Ruta NodeJS</option>
-                        <option value="RutaJava">Ruta Java</option>
-                        <option value="RutaNetCore">Ruta Netcore</option>
+                        <option value="NodeJS">Ruta NodeJS</option>
+                        <option value="Java">Ruta Java</option>
+                        <option value="NetCore">Ruta Netcore</option>
                     </select>
                     <h3>Riesgo</h3>
                     <select id="Riesgo">
@@ -186,7 +186,7 @@ document.getElementById("btnCancelar").addEventListener("click", function(event)
 // Función para Eliminar datos por Numero de Documento en el sercivio
 const EliminarDatos = async (id) => {
     try {
-        const response = await fetch (`http://localhost:3001/Estudiante${id}`,{
+        const response = await fetch (`http://localhost:3001/Estudiante/${id}`,{
             method: 'DELETE'
         });
     if (response.ok) {

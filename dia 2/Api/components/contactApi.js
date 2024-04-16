@@ -1,4 +1,4 @@
-const URL_API = "http://localhost:3001"
+const URL_API = "http://localhost:3001/Estudiante"
 const myHeaders = new Headers({
     "content-Type": "application/json"
 });
