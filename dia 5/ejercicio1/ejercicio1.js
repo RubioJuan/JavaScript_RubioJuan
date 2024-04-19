@@ -2,11 +2,22 @@
 con esa reina que se ubique en el tablero se obtendran las otras 7 reinas 
 para un total de 8 reinas, con el objetivo de que ninguna de las 8 reinas se amenacen entre ellas  
 */
+
+
 // Primero definiremos el tamaño del tablero
 const N = 8;
 
 // Se inicializa el tablero
 let board = new Array(N).fill().map(() => new Array(N).fill(0));
+/*new Array(N): Esto crea un nuevo array con una longitud de N, donde N es el tamaño del tablero.
+
+.fill(): Esto llena cada elemento del array con el valor undefined.
+
+.map(() => new Array(N).fill(0)): Esto mapea cada elemento del array a un nuevo array creado con new Array(N).fill(0).
+
+new Array(N): Crea un nuevo array con una longitud de N.
+
+.fill(0): Rellena cada elemento del array con el valor 0. */
 
 // Función sobre lo que se va imprimir 
 function impresionSolucion(board) {
@@ -19,6 +30,10 @@ function impresionSolucion(board) {
         console.log(row);
     }
 }
+
+// row = Fila
+// col = Columna
+// board = Tablero
 
 function inicio(board, row, col) {
     let i, j;
@@ -40,7 +55,7 @@ function inicio(board, row, col) {
 
 function problema(board, col) {
     // Cuando se ingresen las reinas devuelve true
-    if(col >= N) 
+    if (col >= N) 
         return true;
 
     // Hace que se ingresen las Reinas automáticamente
@@ -49,6 +64,7 @@ function problema(board, col) {
 
             // Se ingresa la Reina en el tablero
             board[i][col] = 1;
+            //[i]: Se refiere a la fila en la que queremos colocar la reina.
 
             // Corre y hace que ingrese reina por reina
             if (problema(board, col + 1)){
@@ -60,15 +76,27 @@ function problema(board, col) {
     // Si no se puede ingresar ninguna Reina, devuelve false
     return false;
 }
+function amenaza(board, row, col) {
+    // Verificar si alguna reina en columnas anteriores amenaza a esta reina
+    for (let i = 0; i < col; i++) {
+        if (board[row][i] === 1) return true; // Verificar si esta en la misma fila
+        if (board[i][col] === 1) return true; // Verificar si esta  en la misma columna
+        if (board[i][col - i + row] === 1) return true; // Verificar si esta  en la misma diagonal superior
+        if (board[i][col + i - row] === 1) return true; // Verificar si esta  en la misma diagonal inferior
+    }
+    return false;
+}
 
-function solucion(startRow, startCol) { 
-    // Ingresa la reina en la posición inicial
-    board[startRow][startCol] = 1;
-    // Ingresa la reina por reina
-    if (!problema(board, startCol + 1)){
-        console.log("Esta solución no existe");
+function solucion(row, col) {
+    board = new Array(N).fill().map(() => new Array(N).fill(0));
+    if (!problema(board, 0)){
+        console.log("No se encontro solucion para los datos ingresados");
         return false;
-    }  
+    }
+    if (amenaza(board, row, col)) {
+        console.log("Esta solucion es incorrecta ya que hay una Reina que esta siendo amenazada");
+        return false;
+    }
     impresionSolucion(board);
     return true;
 }
@@ -83,9 +111,12 @@ let row = parseInt(rowInput);
 
 // Verificar si las entradas son válidas
 if (isNaN(col) || isNaN(row) || col < 0 || col >= N || row < 0 || row >= N) {
-    alert('Entrada no válida. Asegúrese de ingresar números entre 0 y 7 para la fila y la columna.');
+    alert('Datos incorrectos, verifique si los numeros ingresados estan entre 0 y 7 para la fila y la columna.');
 } else {
     // Ejemplo de uso: solucion(0, 0) para colocar la primera reina en la fila 0, columna 0
     solucion(row, col);
-    alert('Ingrese la tecla F12 y vaya a la parte superior en la consola, para verificar si está correcto');
+    alert('Presione la tecla F12 y vaya a la parte superior en la consola, para verificar si está correcto');
 }
+
+
+/*El algoritmo de backtracking es una técnica poderosa para resolver problemas combinatorios y de búsqueda exhaustiva. */
