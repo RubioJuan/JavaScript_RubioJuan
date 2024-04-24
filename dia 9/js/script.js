@@ -22,10 +22,6 @@ function displayHero(data) {
     if (data.response === "error") {
         heroInfo.innerHTML = `<p>Error: ${data.error}</p>`;
     } else {
-        let filmsList = data.films.map(film => `<li>${film}</li>`).join('');
-        let vehicles = data.vehicles.map(vehicle => `<li>${vehicle}</li>`).join('');
-        let starships = data.starships.map(starship => `<li>${starship}</li>`).join('');
-
         // Realiza una solicitud al planeta (homeworld)
         fetch(data.homeworld)
             .then(response => response.json())
@@ -43,7 +39,6 @@ function displayHero(data) {
                 <p><strong>Population:</strong> ${homeworldData.population}</p>
                 `;
             
-                // Inserta la información del héroe y del planeta en el DOM
                 heroInfo.innerHTML = `
                 <p><strong>Name:</strong> ${data.name}</p>
                 <p><strong>Height:</strong> ${data.height}</p>
@@ -53,45 +48,124 @@ function displayHero(data) {
                 <p><strong>Eye Color:</strong> ${data.eye_color}</p>
                 <p><strong>Birth Year:</strong> ${data.birth_year}</p>
                 <p><strong>Gender:</strong> ${data.gender}</p>
-                <p><strong><h5 style="color:blue";>Home World:</h5></strong>${planetInfo}</p>
-                <p><strong><h5 style="color:blue";>Films:</h5></strong></p><ul>${filmsList}</ul>
-                <p><strong><h5 style="color:blue";>Vehicles:</h5></strong></p>
-                <ul>${vehicles}</ul>
-                <p><strong><h5 style="color:blue";>StarShips:</h5></strong></p>
-                <ul>${starships}</ul>
-                <p><strong>Created:</strong> ${data.created}</p>
-                <p><strong>Edited:</strong> ${data.edited}</p>
-                <p><strong><h5 style="color:blue";>URL:</h5></strong> ${data.url}</p>
+                <p><strong><h5 style="color:blue;">Home World:</h5></strong>${planetInfo}</p>
+                <div id="filmsSection"></div>
+                <div id="vehiclesSection"></div>
+                <div id="starshipsSection"></div>
+                <p><strong  style="color:red;">Created:</strong> ${data.created}</p>
+                <p><strong style="color:red;">Edited:</strong> ${data.edited}</p>
+                <div id="urlSection"></div>
                 `;
+
+                fetch(data.films[0])
+                    .then(response => response.json())
+                    .then(filmData => {
+                        const filmInfo = `
+                            <p><strong>Title:</strong> ${filmData.title}</p>
+                            <p><strong>Episode:</strong> ${filmData.episode_id}</p>
+                            <p><strong>Director:</strong> ${filmData.director}</p>
+                            <p><strong>Producer:</strong> ${filmData.producer}</p>
+                            <p><strong>Release Date:</strong> ${filmData.release_date}</p>
+                        `;
+
+                        // Ingresa la información de la primera película dentro de la sección de películas
+                        document.getElementById('filmsSection').innerHTML = `
+                            <p><strong><h5 style="color:blue;">Film:</h5></strong></p>
+                            ${filmInfo}
+                        `;
+
+                    fetch(data.vehicles[0])
+                    .then(response => response.json())
+                    .then(vehiclesData =>{
+                        const vehiclesInfo = `
+                        <p><strong>Name:</strong> ${vehiclesData.name}</p>
+                        <p><strong>Model:</strong> ${vehiclesData.model}</p>
+                        <p><strong>Mano Factura:</strong> ${vehiclesData.manufacturer}</p>
+                        <p><strong>cost_in_credits:</strong> ${vehiclesData.cost_in_credits}</p>
+                        <p><strong>length:</strong> ${vehiclesData.length}</p>
+                        <p><strong>Max_atmosphering_speed:</strong> ${vehiclesData.max_atmosphering_speed}</p>
+                        <p><strong>crew:</strong> ${vehiclesData.crew}</p>
+                        <p><strong>passengers:</strong> ${vehiclesData.passengers}</p>
+                        <p><strong>Cargo De capacidad:</strong> ${vehiclesData.cargo_capacity}</p>
+                        <p><strong>consumables:</strong> ${vehiclesData.consumables}</p>
+                        <p><strong>vehicle_class:</strong> ${vehiclesData.vehicle_class}</p>
+                        `;
+
+                         // Ingresa la información de la primera película dentro de la sección de películas
+                        document.getElementById('vehiclesSection').innerHTML = `
+                        <p><strong><h5 style="color:blue;">vehicles:</h5></strong></p>
+                        ${vehiclesInfo}
+                    `;
+                        fetch(data.starships[0])
+                        .then(response => response.json())
+                        .then(starshipsData =>{
+                            const starshipsInfo = `
+                            <p><strong>Name:</strong> ${starshipsData.name}</p>
+                            <p><strong>Model:</strong> ${starshipsData.model}</p>
+                            <p><strong>Mano Factura:</strong> ${starshipsData.manufacturer}</p>
+                            <p><strong>cost_in_credits:</strong> ${starshipsData.cost_in_credits}</p>
+                            <p><strong>length:</strong> ${starshipsData.length}</p>
+                            <p><strong>Max_atmosphering_speed:</strong> ${starshipsData.max_atmosphering_speed}</p>
+                            <p><strong>crew:</strong> ${starshipsData.crew}</p>
+                            <p><strong>passengers:</strong> ${starshipsData.passengers}</p>
+                            <p><strong>Cargo De capacidad:</strong> ${starshipsData.cargo_capacity}</p>
+                            <p><strong>consumables:</strong> ${starshipsData.consumables}</p>
+                            <p><strong>hyperdrive_rating:</strong> ${starshipsData.hyperdrive_rating}</p>
+                            <p><strong>MGLT:</strong> ${starshipsData.MGLT}</p>
+                            <p><strong>starship_class:</strong> ${starshipsData.starship_class}</p>
+                            `;
+                                // Ingresa la información de la primera película dentro de la sección de películas
+                                document.getElementById('starshipsSection').innerHTML = `
+                                <p><strong><h5 style="color:blue;">Starships:</h5></strong></p>
+                                ${starshipsInfo}
+                                `;
+
+                                fetch(data.url)
+                                .then(response => response.json())
+                                .then(urlData => {
+                                    // Construye la información del planeta
+                                    const urlInfo = `
+                                    <p><strong>Name:</strong> ${urlData.name}</p>
+                                    <p><strong>height:</strong> ${urlData.height}</p>
+                                    <p><strong>Mass</strong> ${urlData.mass}</p>
+                                    <p><strong>Hair_color:</strong> ${urlData.hair_color}</p>
+                                    <p><strong>Skin_color:</strong> ${urlData.skin_color}</p>
+                                    <p><strong>Eye_color:</strong> ${urlData.eye_color}</p>
+                                    <p><strong>Birth_year:</strong> ${urlData.birth_year}</p>
+                                    <p><strong>Gender:</strong> ${urlData.gender}</p>
+                                    `;
+
+                                    // Ingresa la información de la primera película dentro de la sección de películas
+                                    document.getElementById('urlSection').innerHTML = `
+                                    <p><strong><h5 style="color:blue;">URL:</h5></strong></p>
+                                    ${urlInfo}
+                                    `;
+                                })
+                            })
+                        })
+                    })
+                    .catch(error => {
+                        console.error('Error fetching  film:', error);
+                        heroInfo.innerHTML += `<p>Error fetching  film</p>`;
+                    });
             })
             .catch(error => {
                 console.error('Error fetching homeworld:', error);
                 heroInfo.innerHTML = `<p>Error fetching homeworld</p>`;
-            });
-
-            /*
-            fetch(data.films[0]) // Obtiene la URL de la primera película
-            .then(response => response.json())
-            .then(filmData => {
-                // Construye la información de la película
-                const filmInfo = `
-                    <p><strong>Title:</strong> ${filmData.title}</p>
-                    <p><strong>Episode:</strong> ${filmData.episode_id}</p>
-                    <p><strong>Director:</strong> ${filmData.director}</p>
-                    <p><strong>Producer:</strong> ${filmData.producer}</p>
-                    <p><strong>Release Date:</strong> ${filmData.release_date}</p>
-                `;
-                
-                // Inserta la información de la película en el DOM
-                heroInfo.innerHTML += `
-                    <p><strong><h5 style="color:blue;">First Film:</h5></strong></p>
-                    ${filmInfo}
-                `;
             })
             .catch(error => {
-                console.error('Error fetching first film:', error);
-                heroInfo.innerHTML += `<p>Error fetching first film</p>`;
-            });*/
-
+                console.error('Error fetching vehicles:', error);
+                heroInfo.innerHTML = `<p>Error vehicles homeworld</p>`;
+            })
+            .catch(error => {
+                console.error('Error fetching starships:', error);
+                heroInfo.innerHTML = `<p>Error fetching starships</p>`;
+            })
+            .catch(error => {
+                console.error('Error fetching url:', error);
+                heroInfo.innerHTML = `<p>Error fetching url</p>`;
+            });
+        }
     }
-}
+
+/*La API Fetch proporciona una interfaz JavaScript para acceder y manipular partes del canal HTTP, tales como peticiones y respuestas.*/
