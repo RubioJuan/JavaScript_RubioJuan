@@ -50,6 +50,7 @@ function displayHero(data) {
                 <p><strong>Gender:</strong> ${data.gender}</p>
                 <p><strong><h5 style="color:blue;">Home World:</h5></strong>${planetInfo}</p>
                 <div id="filmsSection"></div>
+                <div id="speciesSection"></div>
                 <div id="vehiclesSection"></div>
                 <div id="starshipsSection"></div>
                 <p><strong  style="color:red;">Created:</strong> ${data.created}</p>
@@ -140,6 +141,27 @@ function displayHero(data) {
                                     <p><strong><h5 style="color:blue;">URL:</h5></strong></p>
                                     ${urlInfo}
                                     `;
+
+                                    fetch(data.species[0])
+                                        .then(response => response.json())
+                                        .then(speciesData =>{
+                                            const speciesInfo = `
+                                            <p><strong>Name:</strong> ${speciesData.name}</p>
+                                            <p><strong>Classification:</strong> ${speciesData.classification}</p>
+                                            <p><strong>Designation:</strong> ${speciesData.designation}</p>
+                                            <p><strong>Average_height:</strong> ${speciesData.average_height}</p>
+                                            <p><strong>Skin_colors:</strong> ${speciesData.skin_colors}</p>
+                                            <p><strong>Hair_colors:</strong> ${speciesData.hair_colors}</p>
+                                            <p><strong>Eye_colors:</strong> ${speciesData.eye_colors}</p>
+                                            <p><strong>Average_lifespan:</strong> ${speciesData.average_lifespan}</p>
+                                            <p><strong>Language:</strong> ${speciesData.language}</p>
+                                            `;
+
+                                            document.getElementById('speciesSection').innerHTML = `
+                                            <p><strong><h5 style="color:blue;">Species:</h5></strong></p>
+                                            ${speciesInfo}
+                                            `;
+                                    })
                                 })
                             })
                         })
@@ -155,7 +177,7 @@ function displayHero(data) {
             })
             .catch(error => {
                 console.error('Error fetching vehicles:', error);
-                heroInfo.innerHTML = `<p>Error vehicles homeworld</p>`;
+                heroInfo.innerHTML = `<p>Error vehicles vehicles</p>`;
             })
             .catch(error => {
                 console.error('Error fetching starships:', error);
@@ -164,8 +186,23 @@ function displayHero(data) {
             .catch(error => {
                 console.error('Error fetching url:', error);
                 heroInfo.innerHTML = `<p>Error fetching url</p>`;
+            })
+            .catch(error => {
+                console.error('Error fetching species:', error);
+                heroInfo.innerHTML = `<p>Error fetching species</p>`;
             });
         }
     }
 
-/*La API Fetch proporciona una interfaz JavaScript para acceder y manipular partes del canal HTTP, tales como peticiones y respuestas.*/
+/*La API Fetch proporciona una interfaz JavaScript para acceder y manipular partes del canal HTTP, tales como peticiones y respuestas.
+
+appendChild: Agrega un nuevo nodo al final de la lista de un elemento hijo de un elemento padre especificado.
+
+DOM es una interfaz de programación para los documentos HTML y XML. Facilita una representación estructurada del documento y 
+define de qué manera los programas pueden acceder, al fin de modificar, tanto su estructura, estilo y contenido. 
+
+
+El método then() retorna una Promesa. Recibe dos argumentos: funciones callback para los casos de éxito y fallo de Promise.
+
+InnerHTML devuelve o establece la sintaxis HTML describiendo los descendientes del elemento
+*/
