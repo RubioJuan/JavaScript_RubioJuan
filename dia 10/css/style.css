@@ -1,0 +1,62 @@
+body {
+    background-image: url('https://i.blogs.es/23b58b/star-wars-wallpapers-6/1366_2000.jpg');
+    background-size: cover; /* Cubre todo el área del body */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* Fija la imagen en su posición al hacer scroll */
+}
+.titulo{
+    color: yellow;
+    text-align: center;
+}
+.ir {
+    text-align: center;
+}
+.btn {
+    position: relative;
+    background-color: #007bff; /* Color de fondo inicial */
+    color: #fff; /* Color de texto */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    overflow: hidden; /* Oculta el contenido que sale del botón */
+}
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: rgba(255, 255, 255, 0.3); /* Color y opacidad de la iluminación */
+    border-radius: 50%;
+    transition: width 0.6s, height 0.8s, top 0.3s, left 0.8s; /* Transición suave para la iluminación */
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+.btn:hover::before {
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+}
+/* Estilos para las tablas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    background-color: #bbb2b2a2;
+    border: 1px solid #ffffff;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #ffffff;
+}
