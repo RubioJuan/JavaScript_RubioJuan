@@ -46,15 +46,13 @@ const renderPokemon = async (pokemon) => {
         pokemonImg.style.display = 'none';
         /*En el bloque catch, se actualizan los elementos del DOM para indicar que ha ocurrido un error y que el usuario debe
          "arreglarlo". Se oculta la imagen del Pokémon y se elimina el contenido del número del Pokémon. */
-    }
-
-    
+    }    
 };
 
 // Evento para buscar un Pokémon
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    renderPokemon(input.value.toLowerCase());
+    renderPokemon(input.value.toLowerCase()); // El método toLowerCase() devuelve el valor en minúsculas de la cadena que realiza la llamada
 });
 
 // Evento para ir al Pokémon anterior
