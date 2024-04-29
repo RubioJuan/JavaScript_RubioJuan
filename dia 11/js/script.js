@@ -30,25 +30,34 @@ const renderPokemon = async (pokemon) => {
     /*Esta línea define una función renderPokemon que toma un argumento pokemon. 
     La función está definida como asíncrona (async), lo que significa que puede contener operaciones 
     asincrónicas como llamadas a API. */
-    try { 
-    /*La palabra clave await se utiliza para esperar a que la promesa devuelta por fetchPokemon se resuelva, 
-    lo que significa que la ejecución de la función se pausará hasta que la promesa se cumpla. */
+    try {
         const data = await fetchPokemon(pokemon);
-        pokemonName.textContent = data.name;
-        pokemonNumber.textContent = data.id;
-        pokemonImg.src = data.sprites.versions['generation-v']['black-white'].animated.front_default; //Diferentes tipos de fotos del personaje 
-        pokemonImg.style.display = 'block'; //Hace que todas las imagenes queden en el mismo citio
-        input.value = ''; //Se ingresa vacio, para qe se llene con la informacion del nombre y el numero del pokemon que ingrese el usuario
-        searchPokemon = data.id;
+        if (data) {
+            pokemonName.textContent = data.name;
+            pokemonNumber.textContent = data.id;
+            const sprites = data.sprites.versions['generation-v']['black-white'].animated; //Diferentes tipos de fotos del personaje 
+            if (sprites && sprites.front_default) {
+                pokemonImg.src = sprites.front_default;
+            } else {
+                pokemonImg.src = data.sprites.front_default;
+            }
+            pokemonImg.style.display = 'block'; //Hace que todas las imagenes queden en el mismo citio
+            input.value = ''; //Se ingresa vacio, para qe se llene con la informacion del nombre y el numero del pokemon que ingrese el usuario
+            searchPokemon = data.id;
+        } else {
+            pokemonName.textContent = 'Not found';
+            pokemonNumber.textContent = '';
+            pokemonImg.style.display = 'none';
+            /*En el bloque catch, se actualizan los elementos del DOM para indicar que ha ocurrido un error y que el usuario debe
+         "arreglarlo". Se oculta la imagen del Pokémon y se elimina el contenido del número del Pokémon. */
+        }
     } catch (error) {
+        console.error(error);
         pokemonName.textContent = 'Error...';
         pokemonNumber.textContent = '';
         pokemonImg.style.display = 'none';
-        /*En el bloque catch, se actualizan los elementos del DOM para indicar que ha ocurrido un error y que el usuario debe
-         "arreglarlo". Se oculta la imagen del Pokémon y se elimina el contenido del número del Pokémon. */
-    }    
-};
-
+    }
+}; 
 // Evento para buscar un Pokémon
 form.addEventListener('submit', (event) => {
     event.preventDefault();
