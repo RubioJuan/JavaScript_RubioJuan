@@ -68,12 +68,16 @@ body{
     text-align: center;
     width: calc(100% - 2rem);
     font-size: 2rem;
-  }
+}
 #starts::first-letter {
     color: red;
 }
 .modal-body{
     font-size: 1rem;
+}
+.centered-button {
+    text-align: center;
+    margin-top: 15px; /* Ajusta el margen superior según sea necesario */
 }
 @keyframes fadeInUp {
     from {
