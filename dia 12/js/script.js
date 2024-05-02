@@ -9,6 +9,9 @@
     con una parte trasera y una cara. */
 
     async function randomValue() {
+        /*La expresión await provoca que la ejecución de una función async sea pausada hasta que una Promise sea terminada o rechazada, 
+        y regresa a la ejecución de la función async después del término. 
+        Al regreso de la ejecución, el valor de la expresión await es la regresada por una promesa terminada. */
         try {
             const response = await fetch('https://deckofcardsapi.com/api/deck/new/draw/?count=6');
             const data = await response.json();
@@ -32,6 +35,7 @@
 
     // Función para mezclar una matriz
     function shuffle(array) {
+        /* El algoritmo shuffle en JavaScript es una técnica que permite reorganizar los elementos de un array de forma aleatoria. */
         for (let i = array.length - 1; i > 0; i--) {/*La longitud es una propiedad de cadenas, matrices y algunos 
         otros objetos de JavaScript que devuelve la cantidad de caracteres o elementos de ese objeto. */
             const j = Math.floor(Math.random() * (i + 1));
@@ -39,10 +43,11 @@
         }
     }
     function activate(e) {
-        if (currentMove < 2){
-            if ((!selectedCards[0] || selectedCards[0] !== e.target) && !e.target.classList.contains('active')){
-                e.target.classList.add('active');
-                selectedCards.push(e.target);
+        if (currentMove < 2){ // Verifica que el jugador no pueda seleccionar mas de 2 cartas 
+            if ((!selectedCards[0] /*Verifica si no hay ninguna carta seleccionada actualmente*/ || selectedCards[0] !== e.target) && !e.target.classList.contains('active')){ // Esto asegura que el jugador no haga clic en una carta que ya está activa.
+                e.target.classList.add('active');/* Si todas las condiciones anteriores son verdaderas, esto agrega 
+                la clase 'active' a la carta que el jugador acaba de hacer clic. Esto resalta visualmente la carta seleccionada.*/
+                selectedCards.push(e.target); // Agrega la carta seleccionada a la matriz 
 
                 if(++currentMove == 2){
                     currentAttempts++;/*Comprueba si el número actual de movimientos es menor que 2. 
@@ -90,6 +95,7 @@ Se agrega este elemento a la matriz cards.
 Se agrega la carta al documento.
 Se añade un evento de clic a la primera tarjeta de cada par de cartas que activará la función activate.
 Luego, se llama a randomValue() para obtener y mostrar las imágenes de las cartas de forma aleatoria. */
+
 randomValue();
 
 // Obtener el elemento por su id
