@@ -1,0 +1,8 @@
+.circle-btn {
+    border-radius: 20%; /* Esto hace que el botón tenga forma de círculo */
+    width: 40px; /* Ajusta el ancho del botón */
+    height: 40px; /* Ajusta la altura del botón */
+}
+.col-9{
+    padding-left: 5%;
+}

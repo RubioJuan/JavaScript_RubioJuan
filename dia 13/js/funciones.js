@@ -1,0 +1,1 @@
+// Funcion para que cuando s ele de click a nuevo, salga la ventana para registrar los trajes
