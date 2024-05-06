@@ -11,13 +11,13 @@
   </head>
   <body class="p-3 m-0 border-0 bd-example m-0 border-0">
     <div class="container">
-        <div class="card">
-            <div class="card-header">
-              Mis Heroes
-            </div>
-            <div class="card-body">
-                <h5>Gestion de Heroes</h5>
-                <form class="row g-3">
+      <div class="card">
+        <div class="card-header">
+          Mis Heroes
+        </div>
+        <div class="card-body">
+          <h5>Gestion de Heroes</h5>
+          <form class="row g-3">
                     <div class="col-md-6">
                       <label for="inputEmail4" class="form-label">Nombre personaje</label>
                       <input type="email" class="form-control" id="inputEmail4">
@@ -51,36 +51,38 @@
                       </select>
                     </div>
                     </div>
-                    <div class="container">
-                        <button type="button" class="btn btn-dark">Nuevo</button>
-                        <button type="button" class="btn btn-primary">Guardar Heroe</button>
-                        <button type="button" class="btn btn-danger">Cancelar</button>
-                        <button type="button" class="btn btn-success">Editar</button>
+                  </form>
+                  <div class="conatiner">
+                  <button type="button" class="btn btn-dark" id="btnNuevo">Nuevo</button>
+                  <button type="button" class="btn btn-primary">Guardar Heroe</button>
+                  <button type="button" class="btn btn-danger">Cancelar</button>
+                  <button type="button" class="btn btn-success">Editar</button>
+                  <!-- Registro de trajes -->
+                  <div id="registroTrajes">
+                    <div class="card">
+                      <div class="card-header">
+                        Registro de Trajes
+                      </div>
+                      <div class="card-body">
+                        <h5 class="text-primary">Trajes del personaje</h5>
+                        <p class="text-primary">En esta seccion podra registrar los nombres de los trajes usados por el actor en cada una de la pelicula.</p>
+                        <button type="button" class="btn btn-warning circle-btn">+</button>
                         <br><br>
-                        <div class="card">
-                            <div class="card-header">
-                              Registro de Trajes
-                            </div>
-                            <div class="card-body">
-                              <h5 class="text-primary">Trajes del personaje</h5>
-                              <p class="text-primary">En esta seccion podra registrar los nombres de los trajes usados por el actor en cada una de la pelicula.</p>
-                              <button type="button" class="btn btn-warning circle-btn">+</button>
-                              <br><br>
-                              <div class="row">
-                                <div class="col-9">
-                                    <label for="formGroupExampleInput" class="text-primary">Nombre del traje</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput">
-                                    <button type="button" class="btn btn-danger circle-btn">-</button>
-                                </div>
-                            </div>
+                        <div class="row">
+                          <div class="col-9">
+                            <label for="formGroupExampleInput" class="text-primary">Nombre del traje</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput">
+                            <button type="button" class="btn btn-danger circle-btn">-</button>
+                          </div>
                         </div>
-                        </div>
-                        <br>
-                  </form>             
+                      </div>
+                    </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
+          
 </body>
   <script src="./Api/components/superHero.js" defer></script>
   <script src="./js/funciones.js" defer></script>
